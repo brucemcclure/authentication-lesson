@@ -11,6 +11,8 @@ To See what branches are avalible type the command `git branch -a`.  You will se
 ### Step 1 
 ###### package.json file
 
+
+
 Install dependencies
 - [x] celebrate - ( wraps joi validation )
 - [x] dotenv - ( provides environment variables )
@@ -25,7 +27,7 @@ Install dev-dependencies
 - [x] nodemon - ( watches code for updates on save )
 
 ### Step 2 
-##### Basic express app
+###### Basic express app
 
 Write scrips we will need later on in development
 
@@ -39,4 +41,28 @@ Write scrips we will need later on in development
 ```
 
 Set up the file structure for the basic web server. The basic files in this step are set out for a readable and flexible express app. Each line is commented in case there is something you are unsure of. 
+
+### Step 3
+###### Sessions
+Please read the background.md file if you are unfamiliar with sessions
+
+1) Install express-session: `npm install express-session`
+
+2) Express session is a middleware. 
+So we will require it into app.js: `const expressSession = require('express-session')`
+We will also need to add in this code. Notice the process.env
+    ```
+    app.use(
+    expressSession({
+        secret: process.env.SESSION_SECRET,
+        resave: false, 
+        saveUninitialized: false, 
+        coockie: {
+            expires: 60000
+        }
+    })
+    )
+    ```
+3) Add in the SESSION_SECRET to the .env
+`SESSION_SECRET=superdupersecret4`
 
